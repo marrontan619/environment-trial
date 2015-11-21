@@ -15,6 +15,8 @@ set smartindent "オートインデント
 set shiftwidth=4
 set wrapscan "検索時に最後まで行ったら最初に戻る
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set undofile "編集を終了した後に再度開いても、undoが可能になる
 set backspace=indent,eol,start
+
+let g:netrw_liststyle = 3
