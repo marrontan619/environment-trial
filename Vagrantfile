@@ -70,6 +70,11 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   
-  config.vm.provision "docker"
+  config.vm.provision "docker" do |d|
+    d.build_image "/vagrant",
+      args: "-t marrontan619/initial-image"
+    d.run "marrontan619/initial-image",
+      args: "-d -t -v /vagrant:/tmp/shared:rw"
+  end
   config.vm.provision :shell, :path => "provision.sh"
 end
