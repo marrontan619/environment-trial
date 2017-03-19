@@ -14,6 +14,8 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "Ubuntu15.04"
   config.vm.box_url = "https://vagrantcloud.com/ffuenf/boxes/ubuntu-15.10-server-amd64"
+  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -49,7 +51,7 @@ Vagrant.configure(2) do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "1024"
+     vb.memory = "2048"
    end
   #
   # View the documentation for the provider you are using for more
@@ -69,12 +71,12 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-  
+
   config.vm.provision "docker" do |d|
     d.build_image "/vagrant",
       args: "-t marrontan619/initial-image"
     d.run "marrontan619/initial-image",
-      args: "-d -t -v /vagrant:/tmp/shared:rw"
+      args: "-v /vagrant:/tmp/shared:rw -p 8080:80 --name first-container"
   end
   config.vm.provision :shell, :path => "provision.sh"
 end
