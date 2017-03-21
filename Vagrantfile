@@ -76,7 +76,8 @@ Vagrant.configure(2) do |config|
     d.build_image "/vagrant",
       args: "-t marrontan619/initial-image"
     d.run "marrontan619/initial-image",
-      args: "-v /vagrant:/tmp/shared:rw -p 8080:80 --name first-container"
+      args: "-v /vagrant:/tmp/shared:rw -p 8080:80 --name first-container",
+      daemonize: true
   end
   config.vm.provision :shell, :path => "provision.sh"
 end

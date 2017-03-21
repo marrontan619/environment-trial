@@ -2,11 +2,11 @@ FROM ubuntu:trusty
 
 MAINTAINER marrontan619
 
-RUN sudo apt-get update && \
-    sudo apt-get install -y nginx && \
-    nginx && \
+RUN echo "build start!" && \
+    apt-get update && \
+    apt-get install -y nginx-light && \
     echo 'Installed!'
 
 EXPOSE 80
 
-CMD ["/bin/bash"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
