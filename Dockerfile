@@ -8,8 +8,8 @@ RUN apt-get install -y nginx-light
 RUN echo 'Installed!'
 RUN mkdir /volume
 
-COPY /volume/conf/httpd.conf /etc/nginx/conf.d/
-
+COPY /volume/conf/httpd.conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/httpd.conf /etc/nginx/sites-enabled/
 EXPOSE 80
 
 # CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
