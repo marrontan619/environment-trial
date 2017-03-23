@@ -5,6 +5,7 @@ MAINTAINER marrontan619
 RUN echo 'build start!'
 RUN apt-get update
 RUN apt-get install -y nginx-light
+RUN apt-get install -y tomcat7
 RUN echo 'Installed!'
 RUN mkdir /volume
 
