@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "Ubuntu15.04"
-  config.vm.box_url = "https://vagrantcloud.com/ffuenf/boxes/ubuntu-15.10-server-amd64"
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/boxes/trusty64"
   config.vm.network "private_network", ip: "192.168.33.10"
   config.vm.network "forwarded_port", guest: 80, host: 8080
 
@@ -73,11 +73,11 @@ Vagrant.configure(2) do |config|
   # SHELL
 
   config.vm.provision "docker" do |d|
-    d.build_image "/vagrant",
-      args: "-t marrontan619/initial-image"
-    d.run "marrontan619/initial-image",
-      args: "-v /vagrant/volume:/volume:rw -p 80:80 --name first-container",
-      daemonize: true
+    # d.build_image "/vagrant",
+    #   args: "-t marrontan619/initial-image"
+    # d.run "marrontan619/initial-image",
+    #   args: "-v /vagrant/volume:/volume:rw -p 80:80 --name first-container",
+    #   daemonize: true
   end
   config.vm.provision :shell, :path => "provision.sh"
 end
