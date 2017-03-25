@@ -1,5 +1,5 @@
 .vagrant
 package.box
-/volume/log/*/*
+/docker/*/volume/log/*
 !.gitkeep
 !.gitignore

@@ -8,8 +8,9 @@ MAINTAINER marrontan619
 #RUN echo 'Installed!'
 #RUN mkdir /volume
 
-COPY /volume/conf/httpd.conf /etc/nginx/sites-available/
+#COPY /volume/conf/httpd.conf /etc/nginx/sites-available/
 #RUN ln -s /etc/nginx/sites-available/httpd.conf /etc/nginx/sites-enabled/
+COPY /volume/conf/httpd.conf /etc/nginx/conf.d/
 #EXPOSE 80
 
 #CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
