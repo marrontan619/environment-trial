@@ -1,10 +1,13 @@
 version: "2"
 services:
+  #data
+  data:
+    image: busybox
   # mysql
   mysql:
     image: mysql
     volumes:
-      - /vagrant/volume:/volume:rw
+      - /vagrant/docker/mysql/volume/sql:/docker-entrypoint-initdb.d:rw
     ports:
       - "3306:3306"
     environment:
