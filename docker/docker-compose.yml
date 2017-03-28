@@ -16,9 +16,10 @@ services:
   # php
   app:
     image: php:7.0-fpm
+    volumes:
+      - /vagrant/docker/app/volume/web-root:/var/www/html:rw
     ports:
       - "9000:9000"
-    container_name: docker-app
     depends_on:
       - mysql
     links:
