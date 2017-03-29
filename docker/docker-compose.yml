@@ -26,10 +26,12 @@ services:
       - mysql:mysql
   # reverse-proxy
   proxy:
-    build: proxy
+    image: nginx:latest
+    volumes:
+      - /vagrant/docker/proxy/volume/conf:/etc/nginx/conf.d:rw
+      - /vagrant/docker/proxy/volume/log:/var/log/nginx:rw
+    ports:
+     - "80:80"
+     - "443:443"
     links:
       - app:app
-    ports:
-      - "80:80"
-    volumes:
-      - /vagrant/docker/proxy/volume:/volume:rw
