@@ -15,11 +15,13 @@ services:
       MYSQL_ROOT_PASSWORD: password
   # php
   app:
-    image: php:7.0-fpm
+    build: app/
     volumes:
       - /vagrant/docker/app/volume/web-root:/var/www/html:rw
     ports:
       - "9000:9000"
+    environment:
+      XDEBUG_CONFIG: remote_host=10.0.2.2
     depends_on:
       - mysql
     links:

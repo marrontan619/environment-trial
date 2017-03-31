@@ -80,4 +80,6 @@ Vagrant.configure(2) do |config|
     #   daemonize: true
   end
   config.vm.provision :shell, :path => "provision.sh"
+  config.vm.provision :shell, run: "always", inline: "cd /vagrant/docker && docker-compose up -d --build"
+
 end
