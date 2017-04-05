@@ -1,5 +1,6 @@
 .*
 package.box
 /docker/*/volume/log/*
+/docker/mysql/volume/data/*
 !.gitkeep
 !.gitignore

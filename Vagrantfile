@@ -72,13 +72,7 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
-  config.vm.provision "docker" do |d|
-    # d.build_image "/vagrant",
-    #   args: "-t marrontan619/initial-image"
-    # d.run "marrontan619/initial-image",
-    #   args: "-v /vagrant/volume:/volume:rw -p 80:80 --name first-container",
-    #   daemonize: true
-  end
+  config.vm.provision "docker"
   config.vm.provision :shell, :path => "provision.sh"
   config.vm.provision :shell, run: "always", inline: "cd /vagrant/docker && docker-compose up -d --build"
 
