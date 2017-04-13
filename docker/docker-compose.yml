@@ -1,0 +1,36 @@
+version: "2"
+services:
+  #data
+  # data:
+  #   image: busybox
+  # mysql
+  mysql:
+    image: mysql:latest
+    volumes:
+      - /vagrant/docker/mysql/volume/sql:/docker-entrypoint-initdb.d:rw
+      - /vagrant/docker/mysql/volume/conf:/etc/mysql/conf.d:rw
+      - /vagrant/docker/mysql/volume/data:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  # php
+  app:
+    build: app/
+    volumes:
+      - /vagrant/docker/app/volume/web-root:/var/www/html:rw
+    environment:
+      XDEBUG_CONFIG: remote_host=10.0.2.2
+    links:
+      - mysql:mysql
+  # reverse-proxy
+  proxy:
+    image: nginx:latest
+    volumes:
+      - /vagrant/docker/proxy/volume/conf:/etc/nginx/conf.d:rw
+      - /vagrant/docker/proxy/volume/log:/var/log/nginx:rw
+    ports:
+     - "80:80"
+     - "443:443"
+    links:
+      - app:app

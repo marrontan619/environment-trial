@@ -1,5 +1,6 @@
-.vagrant
+.*
 package.box
-/volume/log/*/*
+/docker/*/volume/log/*
+/docker/mysql/volume/data/*
 !.gitkeep
 !.gitignore
